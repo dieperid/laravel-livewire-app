@@ -39,6 +39,12 @@ class Clicker extends Component
             'email' => $this->email,
             'password' => $this->password,
         ]);
+
+        // Reset value of the field to the default value
+        $this->reset(['name', 'email', 'password']);
+
+        // Display success message
+        request()->session()->flash('success', 'User created successfully !');
     }
 
     /**
