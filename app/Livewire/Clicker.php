@@ -5,9 +5,12 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Clicker extends Component
 {
+    use WithPagination;
+
     /**
      * Name of the user + validation rules for the property
      */
@@ -56,7 +59,7 @@ class Clicker extends Component
 
         $title = "New title";
 
-        $users = User::all();
+        $users = User::paginate(5);
 
         return view('livewire.clicker', [
             'title' => $title,
