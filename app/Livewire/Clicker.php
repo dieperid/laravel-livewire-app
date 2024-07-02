@@ -8,9 +8,17 @@ use Livewire\Component;
 class Clicker extends Component
 {
     /**
-     * Public variable to make it accessible in the view of the component
+     * Name of the user
      */
-    public $username = 'testUser';
+    public $name;
+    /**
+     * Email address of the user
+     */
+    public $email;
+    /**
+     * Password of the user
+     */
+    public $password;
 
     /**
      * Function to create a new user
@@ -18,9 +26,9 @@ class Clicker extends Component
     public function createNewUser()
     {
         User::create([
-            'name' => 'testUser2',
-            'email' => 'test@test2.com',
-            'password' => 'randomPassword',
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
         ]);
     }
 
