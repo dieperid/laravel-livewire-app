@@ -1,11 +1,9 @@
 <div>
-    <h2>{{ $username }}</h2>
+    <form action="">
+        <input type="text" placeholder="name">
+        <input type="email" placeholder="email">
+        <input type="password" placeholder="password">
 
-    <h1>{{ $title }}</h1>
-
-    <p>{{ 'Users : ' . count($users) }}</p>
-
-    <button wire:click="createNewUser">
-        Create New User
-    </button>
+        <button>Create</button>
+    </form>
 </div>
