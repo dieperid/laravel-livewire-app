@@ -58,7 +58,7 @@ class RegisterForm extends Component
         User::create($validated);
 
         // Reset value of the field to the default value
-        $this->reset(['name', 'email', 'password']);
+        $this->reset(['name', 'email', 'password', 'image']);
 
         // Display success message
         request()->session()->flash('success', 'User created successfully !');

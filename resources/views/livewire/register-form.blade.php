@@ -34,6 +34,16 @@
             <span class="text-red-500 text-xs">{{ $message }}</span>
         @enderror
 
+        {{-- Preview of the image under the image field --}}
+        @if ($image)
+            <img class="rounded w-10 h-10 mt-5 block" src="{{ $image->temporaryUrl() }}" alt="Image Preview">
+        @endif
+
+        {{-- Loading state for image file --}}
+        <div wire:loading wire:target="image">
+            <span class="text-green-500">Uploading...</span>
+        </div>
+
         <button class="block rounded px-3 py-1 mt-2 bg-gray-600 text-white">Create</button>
 
     </form>
