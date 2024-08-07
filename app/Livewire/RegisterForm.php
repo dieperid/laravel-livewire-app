@@ -7,7 +7,7 @@ use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Clicker extends Component
+class RegisterForm extends Component
 {
     use WithPagination;
 
@@ -61,7 +61,7 @@ class Clicker extends Component
 
         $users = User::paginate(5);
 
-        return view('livewire.clicker', [
+        return view('livewire.register-form', [
             'title' => $title,
             'users' => $users
         ]);
