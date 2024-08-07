@@ -5,11 +5,13 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class RegisterForm extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     /**
      * Name of the user + validation rules for the property
@@ -30,18 +32,30 @@ class RegisterForm extends Component
     public $password = '';
 
     /**
+     * Picture of the user + validation rules for the property
+     */
+    #[Rule('nullable|sometimes|image|max:1024')]
+    public $image = '';
+
+    /**
      * Function to create a new user
      */
     public function createNewUser()
     {
         // Validation of the form data
-        $this->validate();
+        $validated = $this->validate();
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-        ]);
+        if ($this->image) {
+            $validated['image'] = $this->image->store('uploads', 'public');
+        }
+
+        // User::create([
+        //     'name' => $this->name,
+        //     'email' => $this->email,
+        //     'password' => $this->password,
+        // ]);
+
+        User::create($validated);
 
         // Reset value of the field to the default value
         $this->reset(['name', 'email', 'password']);

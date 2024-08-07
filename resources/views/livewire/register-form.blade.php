@@ -28,7 +28,7 @@
         @enderror
 
         <label class="mt-3 block text-sm font-medium leading-6 text-gray-900">Profile Picture</label>
-        <input accept="image/png, image/jpeg" type="file" id="image"
+        <input wire:model="image" accept="image/png, image/jpeg" type="file" id="image"
             class="block rounded border border-gray-300 px-3 py-1">
         @error('image')
             <span class="text-red-500 text-xs">{{ $message }}</span>
