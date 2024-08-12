@@ -40,7 +40,7 @@ class RegisterForm extends Component
     /**
      * Function to create a new user
      */
-    public function createNewUser()
+    public function createAccount()
     {
         // Validation of the form data
         $validated = $this->validate();

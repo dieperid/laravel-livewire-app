@@ -1,37 +1,41 @@
 <div class="mt-10 p-5 mx-auto sm:w-full sm:max-w-sm">
-    <div class="flex">
-        <h2 class="text-center font-semibold text-2x text-gray-800 mb-5">Create New User</h2>
-    </div>
     @if (session('success'))
         <span class="p-3 m-2 bg-green-500 rounded">{{ session('success') }}</span>
     @endif
 
-    <form wire:submit="createNewUser" action="">
-        <label class="mt-3 block text-sm font-medium leading-6 text-gray-900">Name</label>
-        <input class="block rounded border border-gray-300 px-3 py-1" wire:model="name" type="text" placeholder="name">
+    <form wire:submit="createAccount" action="" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="flex">
+            <h1 class="text-center font-semibold text-2x text-gray-800 mb-4">Create New Account</h1>
+        </div>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            wire:model="name" type="text" placeholder="name">
         @error('name')
-            <span class="text-red-500 text-xs">{{ $message }}</span>
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror
 
-        <label class="mt-3 block text-sm font-medium leading-6 text-gray-900">Email</label>
-        <input class="block rounded border border-gray-300 px-3 py-1" wire:model="email" type="email"
-            placeholder="email">
+        <label class="mt-3 block text-gray-700 text-sm font-bold mb-2">Email</label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            wire:model="email" type="email" placeholder="email">
         @error('email')
-            <span class="text-red-500 text-xs">{{ $message }}</span>
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror
 
-        <label class="mt-3 block text-sm font-medium leading-6 text-gray-900">Password</label>
-        <input class="block rounded border border-gray-300 px-3 py-1" wire:model="password" type="password"
-            placeholder="password">
+        <label class="mt-3 block text-gray-700 text-sm font-bold mb-2">Password</label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            wire:model="password" type="password" placeholder="password">
         @error('password')
-            <span class="text-red-500 text-xs">{{ $message }}</span>
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror
 
-        <label class="mt-3 block text-sm font-medium leading-6 text-gray-900">Profile Picture</label>
+        <label class="mt-3 block text-gray-700 text-sm font-bold mb-2">Profile Picture</label>
         <input wire:model="image" accept="image/png, image/jpeg" type="file" id="image"
-            class="block rounded border border-gray-300 px-3 py-1">
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3">
         @error('image')
-            <span class="text-red-500 text-xs">{{ $message }}</span>
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror
 
         {{-- Preview of the image under the image field --}}
@@ -44,8 +48,12 @@
             <span class="text-green-500">Uploading...</span>
         </div>
 
-        <button class="block rounded px-3 py-1 mt-2 bg-gray-600 text-white">Create</button>
+        <div wire:loading.delay>
+            <span class="text-green-500">Sending...</span>
+        </div>
 
+        <button
+            class="mt-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gray-600">Create</button>
     </form>
 
     @foreach ($users as $user)
