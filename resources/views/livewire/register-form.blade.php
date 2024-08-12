@@ -33,14 +33,14 @@
 
         <label class="mt-3 block text-gray-700 text-sm font-bold mb-2">Profile Picture</label>
         <input wire:model="image" accept="image/png, image/jpeg" type="file" id="image"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3">
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         @error('image')
             <span class="text-red-500 text-xs italic">{{ $message }}</span>
         @enderror
 
         {{-- Preview of the image under the image field --}}
         @if ($image)
-            <img class="rounded w-10 h-10 mt-5 block" src="{{ $image->temporaryUrl() }}" alt="Image Preview">
+            <img class="rounded w-10 h-10 mt-3 block" src="{{ $image->temporaryUrl() }}" alt="Image Preview">
         @endif
 
         {{-- Loading state for image file --}}
@@ -48,12 +48,14 @@
             <span class="text-green-500">Uploading...</span>
         </div>
 
-        <div wire:loading.delay>
+        <div wire:loading.delay wire:target="createAccount">
             <span class="text-green-500">Sending...</span>
         </div>
 
-        <button
-            class="mt-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gray-600">Create</button>
+        <div>
+            <button wire:loading.attr="disabled"
+                class="mt-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gray-600">Create</button>
+        </div>
     </form>
 
     @foreach ($users as $user)
